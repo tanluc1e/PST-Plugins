@@ -1,0 +1,811 @@
+# MobContracts
+# Written by MintyMonster
+
+# /////// INFO ///////
+
+# Placeholders:
+# To use placeholders, you'll need to have PlaceholderAPI installed :)
+
+# Player level: %mobcontracts_player_level%
+# Player experience: %mobcontracts_player_experience%
+# Player total experience: %mobcontracts_player_total_experience%
+# Player next level experience: %mobcontracts_player_level_experience%
+# Common contracts owned: %mobcontracts_common_owned%
+# Epic contracts owned: %mobcontracts_epic_owned%
+# Legendary contracts owned: %mobcontracts_legendary_owned%
+# Total contracts owned: %mobcontracts_total_owned%
+# Common contracts slain: %mobcontracts_common_slain%
+# Epic contracts slain: %mobcontracts_epic_slain%
+# Legendary contracts slain: %mobcontracts_legendary_slain%
+# Total contracts slain: %mobcontracts_total_slain%
+
+# The prefix for all messages
+prefix: '&6Phong Sát Thần &8➟ '
+
+# These are the possible types of mobs that the contract can be.
+# Please ensure the mob-type is a hostile mob, otherwise targeting won't work and they won't attack.
+# Refer to: https://minecraft.fandom.com/wiki/Mob#Hostile_mobs
+# Silverfish can be added for maximum annoyance! ;)
+# Note:
+# - Creeper will not do anything because it needs to explode
+# - Guardian/Elder Guardian needs water
+# - Phantom is really annoying lmao
+# - Witches are a little useless
+# - MagmaCube and Slime break the plugin (because they split) <- To be fixed in a later update! Stay tuned, kids!
+contract-type:
+  - 'EVOKER'
+  - 'VINDICATOR'
+  - 'VEX'
+  - 'ENDERMITE'
+  - 'HUSK'
+  - 'STRAY'
+  - 'BLAZE'
+  - 'SILVERFISH'
+  - 'SKELETON'
+  - 'ZOMBIE'
+  - 'ZOMBIE_VILLAGER'
+  - 'WITHER_SKELETON'
+  - 'WITCH'
+
+
+settings:
+  general:
+    # When the player leaves, should we kill the contract?
+    kill-contract-on-leave: true
+    # When player kills contract, announce?
+    announce-contract-kill: true
+
+    # This will allow players to find their contract, should they lose it.
+    enable-glowing-contract: true
+
+    # Enable/Disable damaging events
+    # true = cancel damage
+    # false = allow damage
+    damageevents:
+      cramming: true
+      drowning: true
+      falling: true
+      falling-block: true # (Sand/Gravel)
+      fire: true
+      hot-blocks: true # (Magma blocks)
+      lava: true
+      lightning: true
+      magic: true # (Potions or spells)
+      poison: true
+      projectile: false
+      suffocation: true
+      wither: true # (Wither potion effect)
+      thorns: true
+      explosions: true
+
+  levels:
+    # Max level that players can achieve
+    max-level: 500
+    # Xp per contract towards level
+    xp-common: 100
+    xp-epic: 250
+    xp-legendary: 500
+    # How much xp per level? Equation: level * xp-multi = xp per level
+    xp-multi: 1000
+
+  targeting:
+    # If set to true, the entity will teleport to their target upon re-targeting.
+    allow-teleport: true
+    # Set to true if you want the mob to instantly teleport out of liquids to the targeted player
+    # Some mobs have issues with getting out of water to attack (Endermite, Silverfish etc)
+    instant-teleport-liquids: true
+    # If set to true, targeting message will be displayed
+    allow-target-message: true
+    # Distance in blocks for player to be within from entity for targeting to count them
+    # Also distance in blocks for player to get targeting message
+    max-distance-from-target: 40
+    # Minimum distance away that the player has to be for the mob to teleport
+    # If the player is under this threshold, the entity will just re-target the player, without teleporting
+    min-distance-from-target: 10
+    # Time in ticks on how often the targeting should re-check
+    target-delay: 800
+
+  common:
+    # Name format for spawned mob (Reference name lists below)
+    name-format: '&7[&e%name% &ethe &e%adjective%&7]'
+    # Set to true if you want the epic mobs to have AOE effects
+    enable-aoe-effects: true
+    # Distance between player and entity in blocks before effected by AOE
+    distance-from-entity: 2
+    # Time in ticks for AOE repeat check for players
+    repeat-check: 300
+    # Amplification level of effect
+    effect-amplifier: 1
+    # Duration of effect in ticks
+    effect-duration: 100
+    # The range of which the health randomiser picks between (Max 1024)
+    max-health: 220
+    min-health: 100
+    # The range of which the damage randomiser picks between.
+    max-damage: 8
+    min-damage: 3
+    # The range of which the speed randomiser picks between
+    # For reference, player sprinting speed is 0.15
+    # Max 1024.0 || Min 0.0
+    max-speed: 1.5
+    min-speed: 0.5
+    # If set to true, contract will gain a random amount of armor stats (Max 20, Min 1)
+    allow-armor: true
+    # If set to true, contracts have a chance to spawn with a powerful weapon
+    allow-weapon: true
+    # If set to true, this mob will use the targeting system
+    # This is recommended
+    allow-targeting: true
+
+  epic:
+    # Name format for spawned mob (Reference name lists below)
+    name-format: '&7[&5%name% &5the &5%adjective%&7]'
+    # Set to true if you want the epic mobs to have AOE effects
+    enable-aoe-effects: true
+    # Distance between player and entity in blocks before effected by AOE
+    distance-from-entity: 2
+    # Time in ticks for AOE repeat check for players
+    repeat-check: 200
+    # Amplification level of effect
+    effect-amplifier: 1
+    # Duration of effect in ticks
+    effect-duration: 100
+    # The range of which the health randomiser picks between (Max 1024)
+    max-health: 550
+    min-health: 300
+    # The range of which the damage randomiser picks between
+    max-damage: 11
+    min-damage: 6
+    # The range of which the speed randomiser picks between
+    # For reference, player sprinting speed is 0.15
+    # Max 1024.0 || Min 0.0
+    max-speed: 1.5
+    min-speed: 0.5
+    # If set to true, contract will gain a random amount of armor stats (Max 20, Min 1)
+    allow-armor: true
+    # If set to true, contracts have a chance to spawn with a powerful weapon
+    allow-weapon: true
+    # If set to true, this mob will use the targeting system
+    # This is recommended
+    allow-targeting: true
+
+  legendary:
+    # Name format for spawned mob (Reference name lists below)
+    name-format: '&8[&6%name% &6the &6%adjective%&8]'
+    # Set to true if you want the legendary mobs to have AOE effects
+    enable-aoe-effects: true
+    # Set to true if you want the legendary mobs to have a secondary effect of hunger 2 (Added difficulty)
+    enable-hunger-two: true
+    # Distance between player and entity in blocks before effected by AOE
+    distance-from-entity: 6
+    # Time in ticks for AOE repeat check for players
+    repeat-check: 140
+    # Amplification level of effect
+    effect-amplifier: 2
+    # Duration of effect in ticks
+    effect-duration: 100
+    # Set to true if you want legendary contracts to say a 'quote' when spawned.
+    enable-boss-message: true
+    # Set to true if you want quotes to be sent globally
+    # If false, and 'enable-boss-message' is true, messages will be sent locally to nearby players
+    global-boss-message: true
+    # The range of which the health randomiser picks between (Max 1024)
+    max-health: 1000
+    min-health: 500
+    # The range of which the damage randomiser picks between
+    max-damage: 15
+    min-damage: 10
+    # The range of which the speed randomiser picks between
+    # For reference, player sprinting speed is 0.15
+    # Max 1024.0 || Min 0.0
+    max-speed: 1.5
+    min-speed: 0.5
+    # If set to true, contract will gain a random amount of armor stats (Max 20, Min 1)
+    allow-armor: true
+    # If set to true, contracts have a chance to spawn with a powerful weapon
+    allow-weapon: true
+    # If set to true, this mob will use the targeting system
+    # This is recommended
+    allow-targeting: true
+
+  # These weapons DO NOT drop when the mob is killed. They're simply there to add an extra bit of spice.
+  # The weapons will only work for specific mobs (Zombie, Skeleton etc...)
+  # These will only work if 'allow-weapon' is true in each mob's configuration section.
+  # Each mob has a 50% chance of having a weapon on spawn (Unless they can't have a weapon)
+  # Mobs, such as skeletons, that have the ability to have a sword and a bow get a randomly selected 1 of the 2.
+  # Each weapon can have ANY enchantment, and higher levels. (Even Sharpness 2000!)
+  # NOTE: Enchantments are optional. If you don't want any enchantments, remove the whole 'enchantments' section.
+  # NOTE: Level defaults to 1 if not set.
+
+  # Format
+  # {weapontype}:
+  #   enchantments:
+  #     {custom name}:
+  #       enchantment-name:
+  #       level:
+
+  mob-weapons:
+    # Skeletons, and the other boney bois.
+    bows:
+      enchantments:
+        enchant1:
+          enchantment-name: 'DURABILITY'
+          level: 1
+
+    # Zombies, husks, drowned, Zombie villagers, piglins, vindicators, skeleton, wither skeleton, stray.
+    swords:
+      # Types: diamond, golden, iron, stone, wooden. <- Use one of these names :))
+      type: 'diamond'
+      enchantments:
+        enchant1:
+          enchantment-name: 'DAMAGE_ALL'
+          level: 1
+
+    # Add whatever you want to these
+    # Ensure that you follow the format
+    # Format on parse: 'Odin the Acidic'
+  names:
+    name:
+      - 'Odin'
+      - 'Frigg'
+      - 'Balder'
+      - 'Loki'
+      - 'Thor'
+      - 'Freya'
+      - 'Heimdall'
+      - 'Hel'
+      - 'Vidar'
+      - 'Vale'
+      - 'Zeus'
+      - 'Hera'
+      - 'Poseidon'
+      - 'Demeter'
+      - 'Ares'
+      - 'Athena'
+      - 'Apollo'
+      - 'Artemis'
+      - 'Hephaestus'
+      - 'Aphrodite'
+      - 'Hermes'
+      - 'Dionysus'
+      - 'Hades'
+      - 'Hyphnos'
+      - 'Nike'
+      - 'Janus'
+      - 'Nemesis'
+      - 'Iris'
+      - 'Hecate'
+      - 'Tyche'
+      - 'Steve'
+      - 'Bob'
+      - 'Jimbo'
+      - 'Betsy'
+      - 'Herobrine'
+      - 'Minty'
+    adjectives:
+      - 'Acidic'
+      - 'Abnormal'
+      - 'Barbarous'
+      - 'Destroyer'
+      - 'Wonder'
+      - 'Barbarian'
+      - 'Bewildered'
+      - 'Berserk'
+      - 'Brainless'
+      - 'Colossal'
+      - 'Damaged'
+      - 'Cynical'
+      - 'Chaotic'
+      - 'Annoying'
+      - 'Deranged'
+      - 'Draconian'
+      - 'Enchanted'
+      - 'Fabulous'
+      - 'Frantic'
+      - 'Fearless'
+      - 'Thicc'
+      - 'Gruesome'
+      - 'Hallowed'
+      - 'Hypnotic'
+      - 'Idiotic'
+      - 'Invincible'
+      - 'Unwieldy'
+      - 'Lewd'
+      - 'Merciful'
+      - 'Maniacle'
+      - 'Rabbid'
+      - 'Inquisitive'
+      - 'Sassy'
+      - 'Scandalous'
+      - 'Righteous'
+      - 'Voiceless'
+      - 'Vigorous'
+      - 'Wretched'
+
+# GUI configuration
+# something to note:
+# 'Material' can have a material passed to it, or a head-id from (https://minecraft-heads.com/)
+# Material needs to be the official material name, such as "BLACK_STAINED_GLASS_PANE"
+# Head-Id needs to be 'Minecraft-URL' to grab from http://textures.minecraft.net/texture/, such as "abe2dd537cb7434c390d0482fa47247ca3eb56f19a93c04c6c8581352b8d9538'
+
+
+# Add full list of placeholders
+gui:
+  main-menu:
+    # No placeholders for Main-Menu.
+    # Want placeholders in here? Provide a suggestion on the spigot page!
+    accent-item: 'STAINED_GLASS_PANE'
+    filler-item: 'STAINED_GLASS_PANE'
+    server-stats:
+      material: 'ac9f813ae82cd688574a849ab9ab441346763adb9ce7cf1b1c727de795df9b'
+      name: '&e&lSERVER STATS &r&8[Click]'
+      lore:
+        - '&8➟ &7Server-wide statistics!'
+    all-contracts:
+      material: 'SIGN'
+      name: '&6&lALL CONTRACTS &8[Click]'
+      lore:
+        - '&8➟ &7Every contract!'
+        - '&8➟ &7View all slain contracts!'
+    contracts-killed:
+      material: 'c493130537fc4d358cdb387c9db08088846b8be54f1c11c256a37eb4c638c0'
+      name: '&e&lCONTRACTS KILLED'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the leaderboard'
+        - '&7for the total &econtracts killed&7!'
+    total-experience:
+      material: 'd62379ce9ab2b7376bfa18b01655b2d58f95875740f2d4972ccb7e4781141'
+      name: '&f&lTOTAL EXPERIENCE'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the leaderboard'
+        - '&7for the total &fPlayer Experience&7!'
+    player-level:
+      material: 'e3e45831c1ea817f7477bcaebfa3d2ee3a936ee8ea2b8bde29006b7e9bdf58'
+      name: '&6&lPLAYER LEVEL'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the leaderboard'
+        - '&7for all users'' &6Player Level&7!'
+    common-contracts:
+      material: 'PAPER'
+      name: '&7&lCOMMON CONTRACTS'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the top players'
+        - '&7who''ve beat Common contracts!'
+    epic-contracts:
+      material: 'MAP'
+      name: '&5&lEPIC CONTRACTS'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the top players'
+        - '&7who''ve beat &5Epic &7contracts!'
+    legendary-contracts:
+      material: 'BLAZE_POWDER'
+      name: '&6&lLEGENDARY CONTRACTS'
+      lore:
+        - '&8➟ &aLeaderboard &8[Click]'
+        - '&7Click to view the top players'
+        - '&7who''ve beat &6Legendary &7contracts!'
+    profiles:
+      name: '&9&lPROFILES &r&8[Click]'
+      lore:
+        - '&8➟ &7All player profiles!'
+
+  # Server-stats placeholders: (Can be used on any of the items in the below GUIS)
+
+  # %total_players% -> Total count of all players online + offline
+  # %total_contracts% -> Total count of all contracts slain
+  # %common_killed% -> Total count of all Common contracts slain
+  # %epic_killed% -> Total count of all Epic contracts slain
+  # %legendary_killed% -> Total count of all Legendary contracts slain
+  # %common_stored% -> Total count of all Common contracts owned by players
+  # %epic_stored% -> Total count of all Epic contracts owned by players
+  # %legendary_stored% -> Total count of all Legendary contracts owned by players
+  # %total_levels% -> Total count of all levels from players
+  # %global_total_experience% -> Total count of all experience from players
+  # %total_damage% -> Total count of all damage across all contracts slain
+  # %total_health% -> Total count of all health across all contracts slain
+  server-stats:
+    accent-item: 'STAINED_GLASS_PANE'
+    filler-item: 'STAINED_GLASS_PANE'
+    back-button:
+      material: 'ARROW'
+      name: '&7Back'
+      lore:
+        - '&8➟ [Click for Main Menu]'
+    stats:
+      material: 'c9c8881e42915a9d29bb61a16fb26d059913204d265df5b439b3d792acd56'
+      name: '&e&lSERVER STATS'
+      lore:
+        - '&8➟ &6%total_players% &7Players'
+        - '&8➟ &a%total_contracts% &7contracts'
+    common-killed:
+      material: '149e48c0df7995e91db5bd3c930e5bcc0abcfaf31273732aeabf33c5d86491'
+      name: '&7&lCOMMON KILLED'
+      lore:
+        - '&8➟ &a%common_killed% &7killed'
+    epic-killed:
+      material: '95372c5f441c36d96a33a0c3cba514568049d811742b7a90c01ea1c1bc39'
+      name: '&5&lEPIC KILLED'
+      lore:
+        - '&8➟ &a%epic_killed% &7killed'
+    legendary-killed:
+      material: '597463d7181e83a143a6ced1a1f77f66d1f28e6f272fe8cd95e7fb89ea0dc69'
+      name: '&6&lLEGENDARY KILLED'
+      lore:
+        - '&8➟ &a%legendary_killed% &7killed'
+    common-stored:
+      material: 'PAPER'
+      name: '&7&lCOMMON STORED'
+      lore:
+        - '&8➟ &a%common_stored% &7contracts stored'
+    epic-stored:
+      material: 'MAP'
+      name: '&5&lEPIC STORED'
+      lore:
+        - '&8➟ &a%epic_stored% &7contracts stored'
+    legendary-stored:
+      material: 'BLAZE_POWDER'
+      name: '&6&lLEGENDARY STORED'
+      lore:
+        - '&8➟ &a%legendary_stored% &7contracts stored'
+    player-levels:
+      material: '6ccbf9883dd359fdf2385c90a459d737765382ec4117b04895ac4dc4b60fc'
+      name-color: '&6&l'
+      name: '&6&lPLAYER LEVELS'
+      lore:
+        - '&8➟ &a%total_levels% &7Total levels'
+    total-experience:
+      material: 'f2fc23866523caaa8a9534566127a6f8389af3e76b8e3c33c2473cba6889c4'
+      name-color: '&6&l'
+      name: '&f&lTOTAL EXPERIENCE'
+      lore:
+        - '&8➟ &a%global_total_experience% &7total experience'
+    total-damage:
+      material: 'd6cc6b83763a67fcada1ea184c2d1752ad240746c6be258a73983d8b657f4bb5'
+      name-color: '&6&l'
+      name: '&9&lTOTAL DAMAGE 🪓'
+      lore:
+        - '&8➟ &a%total_damage% &7total damage'
+        - '&8➟ &7from all contracts'
+    total-health:
+      material: 'b837f3db13a40d4979de77179e18af6e0bc3cc39ea6aba518bb080a6f01a40'
+      name-color: '&6&l'
+      name: '&c&lTOTAL HEALTH ❤'
+      lore:
+        - '&8➟ &a%total_health% &7total health'
+        - '&8➟ &7from all contracts'
+
+  # 'All-contracts' placeholders:
+  # %name% -> name of summoning player
+  # %health% -> Health of entity
+  # %damage% -> Damage of entity
+  # %color% -> Color of tier (Legendary: &6, Epic: &5, Common: &7) This can be removed if you want custom colors
+  # %tier% -> Tier of contract (Legendary/Epic/Common)
+  # %entity_type% -> Type of entity ("Wither Skeleton") <- Formatted like this
+  # %date% -> Date of contract summon
+  all-contracts:
+    lore:
+      - '&8➟ &aStats'
+      - '&7Summoner: &c%name%'
+      - '&7Health: &e%health%&7 ❤'
+      - '&7Damage: &e%damage% &7🪓'
+      - '&7Type: %color%%tier%'
+      - '&7Entity: &e%entity_type%'
+      - '&7Date: %date%'
+
+  # Player based placeholders:
+  # %level% -> Player's level
+  # %total_slain% -> Player's total slain contracts
+  # %xp% -> Player's current experience
+  # %total_experience% -> Player's total experience
+  # %level_experience% -> Player's next level experience
+  # %common_slain% -> Player's total common slain
+  # %epic_slain% -> Player's total epic slain
+  # %legendary_slain% -> Player's total legendary slain
+  # %common_owned% -> Player's total common contracts owned
+  # %epic_owned% -> Player's total epic contracts owned
+  # %legendary_owned% -> Player's total legendary contracts owned
+  contracts-killed:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aSlain'
+      - '&7Total: &6%total_slain%&7 slain'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Level: &e%level%'
+      - '&7Experience: &e%xp%&7xp'
+  player-level:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aLevels'
+      - '&7Level: &6%level%'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Slain: &e%total_slain%'
+      - '&7Experience: &e%xp%&7xp'
+  total-experience:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aExperience'
+      - '&7Total: &6%total_experience%&7xp'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Slain: &e%total_slain% &7contracts'
+      - '&7Level: &e%level%'
+  profiles:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aStats'
+      - '&7Level: &e%level%'
+      - '&7Current xp: &e%xp%'
+      - '&7Next level xp: &e%level_experience%'
+      - '&7Total xp: &e%total_experience%'
+      - ''
+      - '&8➟ &aContracts slain'
+      - '&7Common: &e%common_slain%'
+      - '&7Epic: &5%epic_slain%'
+      - '&7Legendary: &6%legendary_slain%'
+      - ''
+      - '&8➟ &aContracts owned'
+      - '&7Common: &e%common_owned%'
+      - '&7Epic: &e%epic_owned%'
+      - '&7Legendary: &e%legendary_owned%'
+  common-slain:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aCommon slain'
+      - '&7Total: &6%common_slain% &7slain'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Level: &e%level%'
+      - '&7Experience: &e%xp%&7xp'
+  epic-slain:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aEpic slain'
+      - '&7Total: &6%epic_slain% &7slain'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Level: &e%level%'
+      - '&7Experience: &e%xp%&7xp'
+  legendary-slain:
+    name-color: '&6&l'
+    lore:
+      - '&8➟ &aLegendary slain'
+      - '&7Total: &6%legendary_slain% &7slain'
+      - ''
+      - '&8➟ &aStats'
+      - '&7Level: &e%level%'
+      - '&7Experience: &e%xp%&7xp'
+
+# Rewards:
+# Materials, reference here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+
+# Format:
+
+# items:
+#   {common/epic/legendary}:
+#     {custom name}:
+#       show-attributes:
+#       show-enchantments:
+#       unbreakable:
+#       show-unbreakable:
+#       material:
+#       name:
+#       lore:
+#       amount:
+#       enchantments:
+#         {any name}:
+#           enchantment-name:
+#           level:
+
+# {common/epic/legendary} -> Needs to be one of these 3 to identify which mob drops what item.
+# {custom name} -> Any name of your preference, doesn't need to be related
+# show-attributes -> Optional. Whether to show attributes or not. E.G "Damage". Defaults to true (shown)
+# show-enchantments -> Optional. Whether to show/hide enchantments on an item. Will default to "true" (shown)
+# unbreakable -> Optional. True/false > An unbreakable item doesn't lose durability. Will default to false.
+# show-unbreakable -> Optional. True/false. Whether the unbreakable "itemflag" will be shown or not. Will default to "true" (shown)
+# material -> This isn't optional, and cannot be null. Use link provided above for item names. (including all underscores, and full caps lock)
+# name -> Optional. Either configurate your own name, supports '&' colours. If not specified, will default to item name.
+# lore -> Optional. Formatted as a list (Like in the "Mjolnir" example). Supports '&' colours. If not specified, will default to nothing.
+# amount -> Optional. Integer. Will default to 1 if not specified.
+# enchantments -> Optional. If not specified, no enchantments are added
+# {any name} -> Any name for the enchantment
+# enchantment-name -> If enchantments are added, this cannot be empty or null otherwise big explosions and breaking.
+# level -> Optional. Can be anything that an "unsafe" enchantment can be. Even 2048! If not specified with an enchantment, will default to 1.
+
+# NOTE: If in doubt, follow the examples below!
+# NOTE 2: These items are dropped, not given. So, anyone can access them on the floor!
+
+# Add as many as you want
+rewards:
+  # If enabled, items listed will be dropped
+  # IMPORTANT NOTE: When enabled, every item listed here will be dropped.
+  items-enabled: true
+  items:
+    # legendary rewards
+    legendary:
+      mjolnir:
+        show-attributes: false
+        show-enchantments: false
+        unbreakable: true
+        show-unbreakable: false
+        material: 'DIAMOND_AXE'
+        name: '&8II &b&lMjolnir &8II'
+        lore:
+          - '&8➟ &cThe most powerful axe'
+          - '&8➟ &cin all the realms!'
+        enchantments:
+          dmg_all:
+            enchantment-name: 'DAMAGE_ALL'
+            level: 1
+          durability:
+            enchantment-name: 'DURABILITY'
+            level: 1
+
+      diamond:
+        material: 'DIAMOND'
+        name: '&bDiamonds!!'
+        amount: 32
+      sword:
+        material: 'IRON_SWORD'
+        name: '&dHonjo Masamune'
+        lore:
+          - ''
+          - '&7Created by master swordsmith'
+          - '&eGoro Nyudo Masamune'
+          - ''
+          - '&c"Never cut down the'
+          - '&cinnocent and undeserving"'
+        enchantments:
+          sharpness:
+            enchantment-name: 'sharpness'
+            level: 5
+          fire_aspect:
+            enchantment-name: 'fire_aspect'
+            level: 2
+
+    # epic rewards
+    epic:
+      trident:
+        material: 'TRIDENT'
+        name: '&b&lTrident of Poseidon'
+        enchantments:
+          loyalty:
+            enchantment-name: 'loyalty'
+            level: 3
+
+    # common rewards
+    common:
+      dirt:
+        material: 'DIRT'
+        name: 'Sacred dirt!'
+        amount: 10
+
+  # Set to true if you also want commands thrown when contract is killed.
+  # When enabled, every command in the list will be executed for the respective contract.
+  commands-enabled: true
+  commands:
+    legendary:
+      commands:
+        - 'give %player% diamond 100'
+        - 'give %player% emerald 10'
+
+    epic:
+      commands:
+        - 'give %player% diamond 10'
+
+    common:
+      commands:
+        - 'give %player% diamond 1'
+
+
+
+
+
+messages:
+  event:
+    # %player% -> Killer
+    # %entity% -> Contract
+    # %tier% -> Common/Epic/Legendary
+    # %effect% -> Fire, Poison... etc.
+    contract-kill: '&a%player% &7has slain %entity%&7 + %tier% + %effect%!'
+
+  command:
+    # Messages sent when player starts a new contract
+    start-common: '&7You have started a new &eCommon &7contract!'
+    start-epic: '&7You have started a new &5Epic &7contract!'
+    start-legendary: '&7You have started a new &6Legendary &7contract!'
+    # When player is already in contract and can't start another one
+    already-in-contract: '&7You are already in a contract! Finish that before starting another!'
+    # When player starts contract, and has no contracts left.
+    no-contracts-left: '&7You have no &6%type% &7contracts left :('
+    # When Admin removes all contracts
+    remove-all: '&7You have removed &call &7current contracts'
+    # When Admin removes specific player's contract
+    remove-player-contract: '&7You have removed &a%player%&7''s contract'
+    # When there's no contract to remove for that specific player
+    no-contract-remove: '&7This player doesn''t have a contract active!'
+    # Message when Admin gives user a contract
+    give-legendary: '&7You have given &a%amount% &6Legendary &7contract(s) to &a%player%&7!'
+    give-epic: '&7You have given &a%amount% &5Epic &7contract(s) to &a%player%&7!'
+    give-common: '&7You have given &a%amount% &eCommon &7contract(s) to &a%player%&7!'
+    # Message when player receives a contract
+    received-legendary: '&7You have received &a%amount% &6Legendary &7contract(s)!'
+    received-epic: '&7You have received &a%amount% &5Epic &7contract(s)!'
+    received-common: '&7You have received &a%amount% &eCommon &7contract(s)!'
+    # Messages for level commands
+    level-add: '&7You have added &e%amount% &7level(s) to &e%player%'
+    level-set: '&7You have set &e%player%&7''s level to &e%amount%'
+    level-removed: '&7You have removed &e%amount% &7level(s) from &e%player%'
+
+    level-add-received: '&e%player% &7has added &e%amount% &7levels to you!'
+    level-set-received: '&e%player% &7has set your level to &e%amount%'
+    level-removed-received: '&e%player% &7has removed &e%amount% &7levels from you!'
+    # Experience command
+    experience-added: '&e%player% &7has added &e%amount%&7xp to you!'
+    experience-levelup: '&7You are now level &e%level%&7, with &e%currentxp% &7xp!'
+    experience-remove: '&e%player% &7has removed &e%amount%&7xp from you :('
+    experience-remove-error: '&cYou cannot remove more xp than they have. &cWant to reduce their level? use &e/contracts level'
+    # List command
+    list-title: '&bUsable contracts'
+    list-common: '&7Common: &e%common-amount%'
+    list-epic: '&5Epic: &e%epic-amount%'
+    list-legendary: '&6Legendary: &e%legendary-amount%'
+    # Active command.
+    # %entity% -> Entity's custom name
+    current-active-title: '&bCurrent contracts-:'
+    current-active: '&eEntity: %entity%, &eOwner: &6%name%'
+
+  # %entity% -> Contract's custom name
+  # %player% -> Player's name
+  target-message: '%entity% &7is now targeting &6%player%'
+
+  levels:
+    # %xp% -> Amount of xp from contract given
+    # %levelxp% -> Amount of xp in that current level
+    # %level% -> Current level
+    added-xp: '&a%xp% experience &7added! You are now &a%levelxp%&7 experience into level &c%level%'
+    level-up: '&aYou leveled up! You are now level &c%level%'
+    highest-level: '&7You are already the &6highest &7level, but XP is still added to your total!'
+
+  # Quotes when legendary contract is spawned (Add or remove as you wish)
+  bossmessage:
+    fire:
+      - '&7Feel the &6&lburn&r&7!'
+      - '&7Let''s turn up the &6&lheat&r&7!'
+      - '&7I just want to see the world &6&lburn&r&7!'
+      - '&7I''d &c&lrun &r&7if I were you...'
+    poison:
+      - '&7Just a little &2&lpoison&r&7...!'
+      - '&7A spoonful of &2&lcyanide &r&7keeps the hero away!'
+      - '&7I''d &c&lrun &r&7if I were you...'
+      - '&7This may &2&lhurt&r&7!'
+    nausea:
+      - '&7Are you feeling &9&ldizzy &r&7yet?'
+      - '&7I think you should take a &9&lsick &r&7day....'
+      - '&7I''d &c&lrun &r&7if I were you...'
+    smite:
+      - '&7Feel the power of the &b&lskies&r&7!'
+      - '&7I''ll &b&lsmite &r&7you!'
+      - '&7I''d &c&lrun &r&7if I were you...'
+      - '&7Men speak in small words, I speak in &b&lthunder&r&7!'
+    slow:
+      - '&7Looking a little &lsluggish&r&7...!'
+      - '&7Time to &lslowwwww &r&7down!'
+      - '&7I''d &c&lrun &r&7if I were you...'
+    wither:
+      - '&7&8&lWilt &r&7away...!'
+      - '&7Make like a &dflower &r&7and &8&lwilt&r&7!'
+      - '&7I''d &c&lrun &r&7if I were you...'
+      - '&7Let the &8&lshadows &r&7consume you!'
+    blind:
+      - '&7Can you even &f&lsee &r&7me?'
+      - '&7You can''t &f&lsee &r&7me!'
+    weakness:
+      - '&7&a&lWeakling!'
+      - '&7You''re &a&lweak &r&7now!'

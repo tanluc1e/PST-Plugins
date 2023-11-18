@@ -1,0 +1,14 @@
+name: PhongSatThan
+version: 1.0
+main: me.tanluc.phongsatthan.MobContracts
+author: TanLuc remaked from MobContracts
+description: Defeat epic mobs, and collect bounties in Mobcontracts
+softdepend: [PlaceholderAPI]
+#api-version: 1.16
+commands:
+  mobcontracts:
+    aliases: [mcontracts, contracts, contract, mobs, mobcon, con, pst, phongsatthan]
+    description: Main MobContracts command
+    usage: /mobcontracts
+    permission-message: &cPermission denied.
+    permission: mobcontracts.core
