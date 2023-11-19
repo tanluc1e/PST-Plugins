@@ -33,12 +33,12 @@ public class LevelCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Edit a player's levels!";
+        return plugin.getConfig().getString("messages.command-usage.level.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts level [add|remove|set] [amount] [player]";
+        return plugin.getConfig().getString("messages.command-usage.level.usage");
     }
 
     @Override

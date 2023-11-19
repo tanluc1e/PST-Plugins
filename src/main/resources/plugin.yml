@@ -6,9 +6,9 @@ description: Defeat epic mobs, and collect bounties in Mobcontracts
 softdepend: [PlaceholderAPI]
 #api-version: 1.16
 commands:
-  mobcontracts:
-    aliases: [mcontracts, contracts, contract, mobs, mobcon, con, pst, phongsatthan]
-    description: Main MobContracts command
-    usage: /mobcontracts
+  phongsatthan:
+    aliases: [pst]
+    description: Main PhongSatThan command
+    usage: /phongsatthan
     permission-message: &cPermission denied.
     permission: mobcontracts.core

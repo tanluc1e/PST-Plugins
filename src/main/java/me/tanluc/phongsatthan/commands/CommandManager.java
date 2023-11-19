@@ -58,10 +58,10 @@ public class CommandManager implements TabExecutor {
         this.createCustomGuiItem = createCustomGuiItem;
         this.databaseManager = databaseManager;
 
-        plugin.getCommand("mobcontracts").setExecutor(this);
+        plugin.getCommand("phongsatthan").setExecutor(this);
 
         // add commands here
-        addCommands("mobcontracts",
+        addCommands("phongsatthan",
                 new StartCommand("start", genericUseMethods, commonContract, epicContract, legendaryContract, plugin, currentContracts, databaseManager),
                 new RemoveCommand("clear", genericUseMethods, currentContracts, plugin),
                 new GiveCommand("give", genericUseMethods, plugin, databaseManager),
@@ -101,9 +101,9 @@ public class CommandManager implements TabExecutor {
             Player player = (Player) sender;
             MasterCommand master = commands.get(command.getName().toLowerCase());
             if (master != null) {
-                player.sendMessage(ChatColor.DARK_GRAY + "-------------------------------------");
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', " &8 | &6&lMobContracts &r&7-> Made by &bMintyMonster"));
-                player.sendMessage(ChatColor.DARK_GRAY + "-------------------------------------");
+                // player.sendMessage(ChatColor.DARK_GRAY + "-------------------------------------");
+                // player.sendMessage(ChatColor.translateAlternateColorCodes('&', " &8 | &6&lMobContracts &r&7-> Made by &bTanLuc"));
+                // player.sendMessage(ChatColor.DARK_GRAY + "-------------------------------------");
                 master.getChildCommands().values().forEach(c -> {
                     if (player.hasPermission(c.getPermission()) || player.isOp())
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8| &6" + c.getSyntax() + " &8- &7" + c.getDescription()));

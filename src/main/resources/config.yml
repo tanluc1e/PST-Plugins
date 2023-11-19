@@ -1,11 +1,25 @@
 # MobContracts
 # Written by MintyMonster
-
+#
 # /////// INFO ///////
-
+#
+# Commands & Permissions:
+# -> Player commands (mobcontracts.core):-
+# /contracts: Shows the generic help menu!
+# /contracts leaderboard: View the main leaderboard GUI!
+# /contracts list: Show your current usable contracts!
+# /contracts start: Start a contract of your choice!
+#
+# -> Admin commands (mobcontracts.admin):-
+# /contracts active: Show the currently active contracts!
+# /contracts experience: Add, set, or remove a player's experience!
+# /contracts give: Award a player with a contract of a specific type!
+# /contracts level: Add, set, or remove a player's level!
+# /contracts clear: Clear all, or a specific player's active contract!
+#
 # Placeholders:
 # To use placeholders, you'll need to have PlaceholderAPI installed :)
-
+#
 # Player level: %mobcontracts_player_level%
 # Player experience: %mobcontracts_player_experience%
 # Player total experience: %mobcontracts_player_total_experience%
@@ -646,7 +660,6 @@ rewards:
           durability:
             enchantment-name: 'DURABILITY'
             level: 1
-
       diamond:
         material: 'DIAMOND'
         name: '&bDiamonds!!'
@@ -668,7 +681,6 @@ rewards:
           fire_aspect:
             enchantment-name: 'fire_aspect'
             level: 2
-
     # epic rewards
     epic:
       trident:
@@ -678,7 +690,6 @@ rewards:
           loyalty:
             enchantment-name: 'loyalty'
             level: 3
-
     # common rewards
     common:
       dirt:
@@ -694,20 +705,40 @@ rewards:
       commands:
         - 'give %player% diamond 100'
         - 'give %player% emerald 10'
-
     epic:
       commands:
         - 'give %player% diamond 10'
-
     common:
       commands:
         - 'give %player% diamond 1'
 
-
-
-
-
 messages:
+  command-usage:
+    start:
+      usage: '/contracts start [type]'
+      desc: 'Start a new contract!'
+    remove:
+      usage: '/pst clear [Playername || all]'
+      desc: 'Clear all, or a specific players contract'
+    list:
+      usage: '/pst list'
+      desc: 'List your owned contracts!'
+    level:
+      usage: '/pst level [add|remove|set] [amount] [player]'
+      desc: 'Edit a players levels!'
+    leaderboard:
+      usage: '/pst leaderboard'
+      desc: 'Open the leaderboards!'
+    give:
+      usage: '/pst give [player] [type] [amount]'
+      desc: 'Give player a new contract!'
+    giveXP:
+      usage: '/pst xp [add|remove] [amount] [player]'
+      desc: 'Edit a players experience!'
+    active:
+      usage: '/pst active'
+      desc: 'See all active contracts!'
+
   event:
     # %player% -> Killer
     # %entity% -> Contract

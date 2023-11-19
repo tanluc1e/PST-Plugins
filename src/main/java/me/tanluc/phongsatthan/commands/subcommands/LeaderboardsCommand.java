@@ -30,12 +30,12 @@ public class LeaderboardsCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Open the leaderboards!";
+        return plugin.getConfig().getString("messages.command-usage.leaderboard.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts leaderboard";
+        return plugin.getConfig().getString("messages.command-usage.leaderboard.usage");
     }
 
     @Override

@@ -52,12 +52,12 @@ public class StartCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Start a new contract!";
+        return plugin.getConfig().getString("messages.command-usage.start.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts start [type]";
+        return plugin.getConfig().getString("messages.command-usage.start.usage");
     }
 
     @Override

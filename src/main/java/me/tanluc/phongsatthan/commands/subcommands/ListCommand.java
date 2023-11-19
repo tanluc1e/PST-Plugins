@@ -32,12 +32,12 @@ public class ListCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "List your owned contracts!";
+        return plugin.getConfig().getString("messages.command-usage.list.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts list";
+        return plugin.getConfig().getString("messages.command-usage.list.usage");
     }
 
     @Override

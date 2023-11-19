@@ -32,12 +32,12 @@ public class RemoveCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Clear all, or a specific player's contract";
+        return plugin.getConfig().getString("messages.command-usage.remove.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts clear [Playername || all]";
+        return plugin.getConfig().getString("messages.command-usage.remove.usage");
     }
 
     @Override

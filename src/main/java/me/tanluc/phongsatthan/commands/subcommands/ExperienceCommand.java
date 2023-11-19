@@ -35,12 +35,12 @@ public class ExperienceCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Edit a player's experience!";
+        return plugin.getConfig().getString("messages.command-usage.giveXP.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts xp [add|remove] [amount] [player]";
+        return plugin.getConfig().getString("messages.command-usage.giveXP.usage");
     }
 
     @Override

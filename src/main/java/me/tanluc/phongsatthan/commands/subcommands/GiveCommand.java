@@ -32,12 +32,12 @@ public class GiveCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "Give player a new contract!";
+        return plugin.getConfig().getString("messages.command-usage.give.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts give [player] [type] [amount]";
+        return plugin.getConfig().getString("messages.command-usage.give.usage");
     }
 
     @Override

@@ -30,12 +30,12 @@ public class ActiveCommand extends ChildCommand {
 
     @Override
     public String getDescription() {
-        return "See all active contracts!";
+        return plugin.getConfig().getString("messages.command-usage.active.desc");
     }
 
     @Override
     public String getSyntax() {
-        return "/contracts active";
+        return plugin.getConfig().getString("messages.command-usage.active.usage");
     }
 
     @Override

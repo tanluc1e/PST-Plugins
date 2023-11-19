@@ -44,7 +44,7 @@ public class CreateCustomGuiItem {
         int level = sorted.get(index).getValue().getCurrentLevel();
         int xp = sorted.get(index).getValue().getCurrentXp();
         int total_experience = sorted.get(index).getValue().getTotalXp();
-        int level_experience = sorted.get(index).getValue().getCurrentXp() * plugin.getConfig().getInt("settings.levels.xp-multi");
+        int level_experience = sorted.get(index).getValue().getCurrentLevel() * plugin.getConfig().getInt("settings.levels.xp-multi");
         int total_slain = sorted.get(index).getValue().getTotalSlain();
         int common_slain = sorted.get(index).getValue().getCommonSlain();
         int epic_slain = sorted.get(index).getValue().getEpicSlain();
