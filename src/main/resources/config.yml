@@ -742,6 +742,9 @@ messages:
     active:
       usage: '/pst active'
       desc: 'See all active contracts!'
+    reload:
+      usage: '/pst reload'
+      desc: 'Reload settings!'
 
   event:
     # %player% -> Killer
@@ -795,6 +798,8 @@ messages:
     # %entity% -> Entity's custom name
     current-active-title: '&bCurrent contracts-:'
     current-active: '&eEntity: %entity%, &eOwner: &6%name%'
+
+    reload: '&ePlugin configuration reloaded!'
 
   # %entity% -> Contract's custom name
   # %player% -> Player's name

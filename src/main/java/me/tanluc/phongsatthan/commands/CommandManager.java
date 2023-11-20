@@ -70,7 +70,8 @@ public class CommandManager implements TabExecutor {
                 new ActiveCommand("active", plugin, currentContracts, genericUseMethods),
                 new ListCommand("list", plugin, genericUseMethods, databaseManager),
                 new ExperienceCommand("xp", genericUseMethods, plugin, databaseManager),
-                new OpenMenuCommand("menu", genericUseMethods, plugin, databaseManager, createCustomGuiItem)
+                new OpenMenuCommand("menu", genericUseMethods, plugin, databaseManager, createCustomGuiItem),
+                new ReloadCommand("reload", genericUseMethods, plugin)
         );
     }
 
