@@ -24,7 +24,7 @@ public class ContractsKilledGui extends PaginatedGui {
     public ContractsKilledGui(GuiUtil guiUtil,
                               DatabaseManager databaseManager, CreateCustomGuiItem createCustomGuiItem,
                               MobContracts plugin) {
-        super(guiUtil);
+        super(plugin, guiUtil);
         this.databaseManager = databaseManager;
         this.plugin = plugin;
         this.createCustomGuiItem = createCustomGuiItem;
@@ -32,13 +32,14 @@ public class ContractsKilledGui extends PaginatedGui {
 
     @Override
     public String getMenuName() {
-        return "Leaderboard: Contracts killed";
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.kill"));
     }
 
     @Override
     public int getSlots() {
         return 54;
     }
+
 
     @Override
     public void handleMenu(InventoryClickEvent e) {
@@ -63,23 +64,28 @@ public class ContractsKilledGui extends PaginatedGui {
         // Player target = super.guiUtil.getPlayerForProfile();
 
         ArrayList<Map.Entry<UUID, PlayerObject>> sorted = new ArrayList<>(databaseManager.getPlayerMap().entrySet());
+        String previousButton = ChatColor.stripColor(plugin.getConfig().getString("gui.button.previous"));
+        String nextButton = ChatColor.stripColor(plugin.getConfig().getString("gui.button.next"));
+        String closeButton = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.button.close"));
 
         if (e.getCurrentItem().getType().equals(Material.PAPER)) {
-            if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equals("Previous page")) {
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(previousButton)) {
                 if (page != 0) {
                     page -= 1;
                     super.open();
                 } else {
                     new MainMenu(plugin.getMenuUtil((Player) e.getWhoClicked()), createCustomGuiItem, plugin, databaseManager).open();
                 }
-            } else if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equals("Next page")) {
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(nextButton)) {
                 if (!((index + 1) >= sorted.size())) {
                     page += 1;
                     super.open();
                 }
             }
-        } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
-            e.getWhoClicked().closeInventory();
+        } else if (e.getCurrentItem().getType().equals((Material.BARRIER))) {
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(closeButton)) {
+                e.getWhoClicked().closeInventory();
+            }
         }
     }
 

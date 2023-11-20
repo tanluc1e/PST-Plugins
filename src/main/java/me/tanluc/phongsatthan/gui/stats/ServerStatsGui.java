@@ -2,6 +2,7 @@ package me.tanluc.phongsatthan.gui.stats;
 
 import me.tanluc.phongsatthan.gui.handler.Gui;
 import me.tanluc.phongsatthan.gui.handler.GuiUtil;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -33,7 +34,7 @@ public class ServerStatsGui extends Gui {
 
     @Override
     public String getMenuName() {
-        return "Server-wide statistics";
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.server"));
     }
 
     @Override

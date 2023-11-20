@@ -346,6 +346,21 @@ settings:
 
 # Add full list of placeholders
 gui:
+  title:
+    main-menu: '&6&lMain menu'
+    all: '&6&lAll'
+    common: '&6&lLeaderboard: &eCommon slain'
+    epic: '&6&lLeaderboard: &eEpic slain'
+    legendary: '&6&lLeaderboard: &eLegendary slain'
+    profile: '&6&lLeaderboard: &eCommon'
+    server: '&6&LServer stats'
+    kill: '&6&lLeaderboard: &eKilled'
+    exp: '&6&lLeaderboard: &eExp'
+    level: '&6&lLeaderboard: &eLevel'
+  button:
+    previous: '&7&lPrevious page'
+    next: '&a&lNext page'
+    close: '&c&lClose'
   main-menu:
     # No placeholders for Main-Menu.
     # Want placeholders in here? Provide a suggestion on the spigot page!

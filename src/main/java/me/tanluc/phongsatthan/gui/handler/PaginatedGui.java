@@ -1,5 +1,6 @@
 package me.tanluc.phongsatthan.gui.handler;
 
+import me.tanluc.phongsatthan.MobContracts;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -9,12 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PaginatedGui extends Gui {
+    private final MobContracts plugin;
 
     protected int page = 0;
     protected int maxItemsPerPage = 45;
 
-    public PaginatedGui(GuiUtil guiUtil) {
+    public PaginatedGui(MobContracts plugin, GuiUtil guiUtil) {
         super(guiUtil);
+        this.plugin = plugin;
     }
     // 46 - 54
     // 51 49
@@ -24,15 +27,14 @@ public abstract class PaginatedGui extends Gui {
         // Buttons
         ItemStack next = new ItemStack(Material.PAPER, 1);
         ItemMeta nextmeta = next.getItemMeta();
-        nextmeta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "Next page");
+        nextmeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.button.next")));
         next.setItemMeta(nextmeta);
         inventory.setItem(50, next);
 
         ItemStack back = new ItemStack(Material.PAPER, 1);
         ItemMeta backmeta = back.getItemMeta();
-        backmeta.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + "Previous page");
+        backmeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.button.previous")));
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.DARK_GRAY + "[Back to main menu]");
         if (page == 0) {
             backmeta.setLore(lore);
         }
@@ -41,7 +43,7 @@ public abstract class PaginatedGui extends Gui {
 
         ItemStack close = new ItemStack(Material.BARRIER, 1);
         ItemMeta closemeta = close.getItemMeta();
-        closemeta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "Close");
+        closemeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.button.close")));
         close.setItemMeta(closemeta);
         inventory.setItem(49, close);
 

@@ -43,7 +43,7 @@ public class MainMenu extends Gui {
 
     @Override
     public String getMenuName() {
-        return "Main Menu";
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.main-menu"));
     }
 
     @Override

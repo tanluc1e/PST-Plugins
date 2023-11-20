@@ -3,6 +3,7 @@ package me.tanluc.phongsatthan.gui.generic;
 //import org.apache.commons.text.WordUtils;
 import me.tanluc.phongsatthan.gui.handler.GuiUtil;
 import me.tanluc.phongsatthan.gui.handler.PaginatedGui;
+import me.tanluc.phongsatthan.utils.PlayerObject;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -29,7 +30,7 @@ public class AllContractsGui extends PaginatedGui {
                            DatabaseManager databaseManager,
                            CreateCustomGuiItem createCustomGuiItem,
                            MobContracts plugin) {
-        super(guiUtil);
+        super(plugin, guiUtil);
         this.databaseManager = databaseManager;
         this.createCustomGuiItem = createCustomGuiItem;
         this.plugin = plugin;
@@ -37,7 +38,7 @@ public class AllContractsGui extends PaginatedGui {
 
     @Override
     public String getMenuName() {
-        return "All the contracts!";
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.all"));
     }
 
     @Override
@@ -48,24 +49,29 @@ public class AllContractsGui extends PaginatedGui {
     @Override
     public void handleMenu(InventoryClickEvent e) {
 
-        ArrayList<Map.Entry<UUID, ContractObject>> mobs = new ArrayList<>(databaseManager.getContractMap().entrySet());
+        ArrayList<Map.Entry<UUID, PlayerObject>> sorted = new ArrayList<>(databaseManager.getPlayerMap().entrySet());
+        String previousButton = ChatColor.stripColor(plugin.getConfig().getString("gui.button.previous"));
+        String nextButton = ChatColor.stripColor(plugin.getConfig().getString("gui.button.next"));
+        String closeButton = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.button.close"));
 
         if (e.getCurrentItem().getType().equals(Material.PAPER)) {
-            if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equals("Previous page")) {
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(previousButton)) {
                 if (page != 0) {
                     page -= 1;
                     super.open();
                 } else {
                     new MainMenu(plugin.getMenuUtil((Player) e.getWhoClicked()), createCustomGuiItem, plugin, databaseManager).open();
                 }
-            } else if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equals("Next page")) {
-                if (!((index + 1) >= mobs.size())) {
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(nextButton)) {
+                if (!((index + 1) >= sorted.size())) {
                     page += 1;
                     super.open();
                 }
             }
-        } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
-            e.getWhoClicked().closeInventory();
+        } else if (e.getCurrentItem().getType().equals((Material.BARRIER))) {
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(closeButton)) {
+                e.getWhoClicked().closeInventory();
+            }
         }
     }
 
