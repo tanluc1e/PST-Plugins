@@ -16,6 +16,7 @@
 # /contracts give: Award a player with a contract of a specific type!
 # /contracts level: Add, set, or remove a player's level!
 # /contracts clear: Clear all, or a specific player's active contract!
+# /contracts menu: Open custom menu for player!
 #
 # Placeholders:
 # To use placeholders, you'll need to have PlaceholderAPI installed :)
@@ -729,6 +730,9 @@ messages:
     leaderboard:
       usage: '/pst leaderboard'
       desc: 'Open the leaderboards!'
+    menu:
+      usage: '/pst menu [all|common|epic|legendary|profile|server|kill|exp|level] [player]'
+      desc: 'Open menu for player!'
     give:
       usage: '/pst give [player] [type] [amount]'
       desc: 'Give player a new contract!'
