@@ -32,7 +32,7 @@ public class LegendaryContractsGui extends PaginatedGui {
         this.createCustomGuiItem = createCustomGuiItem;
     }
 
-    @Override
+
     public String getMenuName() {
         return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.legendary"));
     }

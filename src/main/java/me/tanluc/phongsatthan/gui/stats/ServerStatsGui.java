@@ -32,7 +32,6 @@ public class ServerStatsGui extends Gui {
         this.config = plugin.getConfig();
     }
 
-    @Override
     public String getMenuName() {
         return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.server"));
     }

@@ -36,7 +36,6 @@ public class AllContractsGui extends PaginatedGui {
         this.plugin = plugin;
     }
 
-    @Override
     public String getMenuName() {
         return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.all"));
     }

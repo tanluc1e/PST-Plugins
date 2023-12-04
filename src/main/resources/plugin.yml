@@ -10,5 +10,5 @@ commands:
     aliases: [pst]
     description: Main PhongSatThan command
     usage: /phongsatthan
-    permission-message: &cPermission denied.
+    permission-message: 'Permission denied.'
     permission: mobcontracts.core

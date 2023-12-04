@@ -32,7 +32,6 @@ public class EpicContractsGui extends PaginatedGui {
         this.createCustomGuiItem = createCustomGuiItem;
     }
 
-    @Override
     public String getMenuName() {
         return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.epic"));
     }

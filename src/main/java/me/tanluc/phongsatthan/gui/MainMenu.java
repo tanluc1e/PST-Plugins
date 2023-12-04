@@ -41,7 +41,6 @@ public class MainMenu extends Gui {
         this.databaseManager = databaseManager;
     }
 
-    @Override
     public String getMenuName() {
         return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("gui.title.main-menu"));
     }

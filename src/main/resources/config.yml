@@ -17,6 +17,7 @@
 # /contracts level: Add, set, or remove a player's level!
 # /contracts clear: Clear all, or a specific player's active contract!
 # /contracts menu: Open custom menu for player!
+# /contracts reload: Reload plugin!
 #
 # Placeholders:
 # To use placeholders, you'll need to have PlaceholderAPI installed :)

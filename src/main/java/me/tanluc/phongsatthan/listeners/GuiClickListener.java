@@ -11,18 +11,18 @@ public class GuiClickListener implements Listener {
 
     @EventHandler
     public void onGuiClick(InventoryClickEvent e) {
-        Player p = (Player) e.getWhoClicked();
-        if (e.getClickedInventory() == null) return;
-        InventoryHolder holder = e.getClickedInventory().getHolder();
-
-        if (holder instanceof Gui) {
-
+        if (e.getView().getTitle().equals(Gui.guiName)) {
             e.setCancelled(true);
+            Player p = (Player) e.getWhoClicked();
+            if (e.getClickedInventory() == null) return;
+            InventoryHolder holder = e.getClickedInventory().getHolder();
 
-            if (e.getCurrentItem() == null) return;
+            if (holder instanceof Gui) {
+                if (e.getCurrentItem() == null) return;
 
-            Gui gui = (Gui) holder;
-            gui.handleMenu(e);
+                Gui gui = (Gui) holder;
+                gui.handleMenu(e);
+            }
         }
     }
 }

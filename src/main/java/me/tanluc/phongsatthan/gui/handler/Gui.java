@@ -9,12 +9,16 @@ public abstract class Gui implements InventoryHolder {
 
     protected Inventory inventory;
     protected GuiUtil menuUtil;
+    public static String guiName;
 
     public Gui(GuiUtil menuUtil) {
         this.menuUtil = menuUtil;
     }
 
-    public abstract String getMenuName();
+    public static String getMenuName(String getGuiname) {
+        guiName = getGuiname;
+        return guiName;
+    };
 
     public abstract int getSlots();
 
@@ -23,7 +27,7 @@ public abstract class Gui implements InventoryHolder {
     public abstract void setItems();
 
     public void open() {
-        inventory = Bukkit.createInventory(this, getSlots(), getMenuName());
+        inventory = Bukkit.createInventory(this, getSlots(), getMenuName(this.toString()));
 
         this.setItems();
 
